@@ -1,0 +1,47 @@
+# Read more about SSH config files: https://linux.die.net/man/5/ssh_config
+
+Host 20.93.177.115
+Hostname 20.93.177.115
+User adminuser
+PubKeyAuthentication yes
+IdentityFile /Users/ross/.ssh/scale_key
+
+Host 10.0.1.5
+Hostname 10.0.1.5
+User adminuser
+PubKeyAuthentication yes
+IdentityFile /Users/ross/.ssh/scale_key
+
+Host 10.0.1.6
+Hostname 10.0.1.6
+User adminuser
+PubKeyAuthenticat ion yes
+IdentityFile /Users/ross/.ssh/scale_key
+
+Host 13.95.117.199
+Hostname 13.95.117.199
+User adminuser
+PubKeyAuthentication yes
+IdentityFile /Users/ross/.ssh/controller
+
+# # scaleset
+# Host 20.31.188.139 
+# Hostname 20.31.188.139 
+# User adminuser
+# PubKeyAuthentication yes
+# IdentityFile /Users/ross/.ssh/scale_key
+
+# # postgres
+# Host postgres-server-dorrdor55.postgres.database.azure.com
+# Hostname postgres-server-dorrdor55.postgres.database.azure.com
+# User adminuser
+# PubKeyAuthentication yes
+# # IdentityFile /Users/ross/.ssh/scale_key
+
+# # bla
+# Host 13.93.15.124
+# Hostname 13.93.15.124
+# User adminuser
+# PubKeyAuthentication yes
+# IdentityFile /Users/ross/.ssh/bla
+
