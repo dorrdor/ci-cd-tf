@@ -1,0 +1,7 @@
+[Staging]
+server1 ansible_host=10.0.1.4
+#server1 ansible_host=10.0.1.6
+
+# [prod]
+# vmp1=10.0.1.6
+

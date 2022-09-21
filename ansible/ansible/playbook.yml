@@ -1,0 +1,58 @@
+---
+- hosts:  "{{ group }}"
+  become: true
+
+  tasks:
+
+  - name: Transfer folder from agentServer to hosting servers
+    synchronize:
+      src: /home/adminuser/myagent/_work/1/s/bootcamp-app
+      dest: /home/adminuser
+    become: no
+  
+  # - name: Update apt repo and cache on all Debian/Ubuntu boxes
+  #   apt:
+  #    update_cache: yes
+  #    force_apt_get: yes
+  #    cache_valid_time: 3600
+
+  - name: npm $ nodejs
+    shell: sudo curl -fsSL https://deb.nodesource.com/setup_14.x | sudo -E bash - && sudo apt-get install -y nodejs           
+    args:
+      chdir: /home/adminuser/bootcamp-app/s
+  - name: install NPM
+    shell: npm i
+    args:
+      chdir: /home/adminuser/bootcamp-app/s
+
+  # - name: install NPM
+  #   shell: npm audit fix
+  #   args:
+  #     chdir: /home/adminuser/bootcamp-app/s 
+
+  - name: install dotenv
+    shell: npm install dotenv   
+    args:
+      chdir: /home/adminuser/bootcamp-app/s
+  # - name: Database initialization
+  #   shell: npm run initdb
+  #   async: 30
+  #   poll: 0
+  #   args:
+  #     chdir: "/home/adminuser/bootcamp-app"
+
+  - name: Install pm2
+    shell: npm install pm2@latest -g      
+
+  - name: Run application
+    shell: pm2 start npm -- run dev && pm2 save && pm2 startup  
+    args:  
+      chdir: /home/adminuser/bootcamp-app/s
+
+  - name: change env for pm2
+    shell: env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u adminuser --hp /home/adminuser
+    args:  
+      chdir: /home/adminuser/bootcamp-app/s
+
+
+     
